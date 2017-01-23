@@ -3,7 +3,7 @@
 alpine-mesos-dns 
 ==============
 
-This image is the mesos-dns  base. It comes from [alpine-monit][alpine-monit].
+This image is the mesos-dns base. It comes from [alpine-monit][alpine-monit].
 
 ## Build
 
