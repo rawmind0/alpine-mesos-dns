@@ -12,6 +12,15 @@ function serviceLog {
     ln -sf /proc/1/fd/1 ${SERVICE_HOME}/nohup.out
 }
 
+function serviceLinkLocal {
+    if [ -n ${LINK_LOCAL_IP} ]; then
+        log "[ Configuring link local ip ${LINK_LOCAL_IP}... ]"
+        rc=$(ip addr s eth0| grep -w 'inet' | awk '{print $2}' | cut -f1  -d'/' | grep ${LINK_LOCAL_IP} > /dev/null; echo $?)
+        if [ "$rc" -ne "0" ]: then
+            ip addr add ${LINK_LOCAL_IP}/32 dev eth0
+        fi
+    fi
+}
 
 function serviceCheck {
     log "[ Generating ${SERVICE_NAME} configuration... ]"
@@ -19,6 +28,7 @@ function serviceCheck {
 }
 
 function serviceStart {
+    serviceLinkLocal
     serviceCheck
     serviceLog
     log "[ Starting ${SERVICE_NAME}... ]"
@@ -37,6 +47,8 @@ function serviceRestart {
     serviceStart
     /opt/monit/bin/monit reload
 }
+
+LINK_LOCAL_IP=${LINK_LOCAL_IP:-""}
 
 case "$1" in
         "start")
