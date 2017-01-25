@@ -13,7 +13,7 @@ docker build -t rawmind/alpine-mesos-dns :<version> .
 
 ## Versions
 
-- `0.6.0` [(Dockerfile)](https://github.com/rawmind0/alpine-mesos-dns/blob/0.6.0/Dockerfile)
+- `0.6.0-1` [(Dockerfile)](https://github.com/rawmind0/alpine-mesos-dns/blob/0.6.0-1/Dockerfile)
 
 
 ## Configuration
@@ -37,6 +37,7 @@ Mesos-dns is installed with the default configuration and some parameters can be
 - MESOS_DNS_HTTPON=${MESOS_DNS_HTTPON:-true}
 - MESOS_DNS_EXTERNALON=${MESOS_DNS_EXTERNALON:-true}
 - MESOS_DNS_RECURSEON=${MESOS_DNS_RECURSEON:-true}
+- MESOS_DNS_LISTENER=${MESOS_DNS_LISTENER:-"0.0.0.0"}
 
 ### Custom Configuration
 

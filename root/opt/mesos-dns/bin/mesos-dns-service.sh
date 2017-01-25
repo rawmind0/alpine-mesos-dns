@@ -7,7 +7,7 @@ function log {
 function serviceLog {
     log "[ Redirecting ${SERVICE_NAME} log... ]"
     if [ -e ${SERVICE_HOME}/nohup.out ]; then
-        ${SERVICE_HOME}/nohup.out
+        rm ${SERVICE_HOME}/nohup.out
     fi
     ln -sf /proc/1/fd/1 ${SERVICE_HOME}/nohup.out
 }

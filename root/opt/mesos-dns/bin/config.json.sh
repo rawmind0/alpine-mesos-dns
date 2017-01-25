@@ -11,6 +11,7 @@ MESOS_DNS_DNSON=${MESOS_DNS_DNSON:-true}
 MESOS_DNS_HTTPON=${MESOS_DNS_HTTPON:-true}
 MESOS_DNS_EXTERNALON=${MESOS_DNS_EXTERNALON:-true}
 MESOS_DNS_RECURSEON=${MESOS_DNS_RECURSEON:-true}
+MESOS_DNS_LISTENER=${MESOS_DNS_LISTENER:-"0.0.0.0"}
 
 
 cat << EOF > ${SERVICE_HOME}/etc/config.json
@@ -25,7 +26,7 @@ cat << EOF > ${SERVICE_HOME}/etc/config.json
   "port": ${MESOS_DNS_PORT},
   "resolvers": [${MESOS_DNS_RESOLVERS}],
   "timeout": 5,
-  "listener": "0.0.0.0",
+  "listener": ${MESOS_DNS_LISTENER},
   "SOAMname": "${MESOS_DNS_NS}.${MESOS_DNS_DOMAIN}",
   "SOARname": "root.${MESOS_DNS_NS}.${MESOS_DNS_DOMAIN}",
   "SOARefresh": 60,
