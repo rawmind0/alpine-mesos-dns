@@ -13,10 +13,10 @@ function serviceLog {
 }
 
 function serviceLinkLocal {
-    if [ -n ${LINK_LOCAL_IP} ]; then
+    if [ "${LINK_LOCAL_IP}X" != "X" ]; then
         log "[ Configuring link local ip ${LINK_LOCAL_IP}... ]"
         rc=$(ip addr s eth0| grep -w 'inet' | awk '{print $2}' | cut -f1  -d'/' | grep ${LINK_LOCAL_IP} > /dev/null; echo $?)
-        if [ "$rc" -ne "0" ]: then
+        if [ "$rc" -ne "0" ]; then
             ip addr add ${LINK_LOCAL_IP}/32 dev eth0
         fi
     fi

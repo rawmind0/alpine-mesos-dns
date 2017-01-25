@@ -6,7 +6,9 @@ mesos-dns:
   tty: true
   log_opt: {}
   network_mode: host
-  image: rawmind/alpine-mesos-dns:0.6.0-2
+  image: rawmind/alpine-mesos-dns:0.6.0-3
+  cap_add:
+  - NET_ADMIN
   external_links:
   - ${mesos_zk}:zookeeper
   - ${mesos_master}:master
@@ -15,6 +17,6 @@ mesos-dns:
   - MESOS_MASTER="master:5050"
   - MESOS_DNS_DOMAIN=${mesos_domain}
   - MESOS_DNS_RESOLVERS="169.254.169.250"
-  - MESOS_DNS_LISTENER="169.254.169.251"
-  - LINK_LOCAL_IP="169.254.169.251"
+  - MESOS_DNS_LISTENER="${mesos_localip}"
+  - LINK_LOCAL_IP="${mesos_localip}"
 

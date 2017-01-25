@@ -16,7 +16,7 @@ ENV PATH=${PATH}:${SERVICE_HOME}/bin
 
 # Download and install mesos-dns
 RUN mkdir -p ${SERVICE_HOME}/bin ${SERVICE_HOME}/etc ${SERVICE_HOME}/log && \
-    apk add --no-cache libcap go make git musl-dev && \
+    apk add --no-cache libcap go make git musl-dev iproute2 && \
     mkdir -p /opt/src; cd /opt/src && \
     go get ${SERVICE_URL} && \
     cd ${GOPATH}/src/${SERVICE_URL} && \
@@ -32,7 +32,9 @@ RUN mkdir -p ${SERVICE_HOME}/bin ${SERVICE_HOME}/etc ${SERVICE_HOME}/log && \
 ADD root /
 RUN chmod +x ${SERVICE_HOME}/bin/*.sh && \
     chown -R ${SERVICE_USER}:${SERVICE_GROUP} ${SERVICE_HOME} /opt/monit && \
-    setcap 'cap_net_bind_service=+ep' ${SERVICE_HOME}/bin/mesos-dns
+    setcap \
+        'cap_net_bind_service=+ep' ${SERVICE_HOME}/bin/mesos-dns \
+        'cap_net_admin=+ep' /sbin/ip
 
 EXPOSE 53
 USER ${SERVICE_USER}
