@@ -6,7 +6,7 @@ mesos-dns:
   tty: true
   log_opt: {}
   network_mode: host
-  image: rawmind/alpine-mesos-dns:0.6.0
+  image: rawmind/alpine-mesos-dns:0.6.0-1
   external_links:
   - ${mesos_zk}:zookeeper
   - ${mesos_master}:master
@@ -15,5 +15,5 @@ mesos-dns:
   - MESOS_MASTER="master:5050"
   - MESOS_DNS_DOMAIN=${mesos_domain}
   - MESOS_DNS_RESOLVERS="169.254.169.250"
-  - MESOS_DNS_LISTENER=10.42.0.1
+  - MESOS_DNS_LISTENER="10.42.0.1"
 
