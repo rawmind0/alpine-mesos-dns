@@ -13,7 +13,7 @@ docker build -t rawmind/alpine-mesos-dns :<version> .
 
 ## Versions
 
-- `0.6.0-3` [(Dockerfile)](https://github.com/rawmind0/alpine-mesos-dns/blob/0.6.0-3/Dockerfile)
+- `0.6.0-4` [(Dockerfile)](https://github.com/rawmind0/alpine-mesos-dns/blob/0.6.0-4/Dockerfile)
 
 
 ## Configuration
